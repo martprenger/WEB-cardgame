@@ -6,7 +6,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 $routes = [
     'test' => 'view/test.php',
-    'home' => 'view/home.php',
+    'home' => 'source/HomeController.php',
     '404' => 'view/404.php'
     // Add more routes here
 ];

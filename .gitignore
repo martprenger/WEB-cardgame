@@ -25,3 +25,5 @@
 /vendors/*
 
 /.env
+/.idea/
+/composer.lock

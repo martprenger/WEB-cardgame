@@ -1,4 +1,5 @@
 <?php
+
 require_once 'view/layouts/header.php';
 ?>
 
@@ -13,17 +14,17 @@ require_once 'view/layouts/header.php';
         <div class="collapse navbar-collapse container-fluid" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="test">Home</a>
+                    <a class="nav-link " aria-current="page" href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">cards</a>
+                    <a class="nav-link" href="cards">cards</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">decks</a>
+                    <a class="nav-link" href="decks">decks</a>
                 </li>
 
                 <li class="nav-item account ">
-                    <a class="nav-link" href="#">account</a>
+                    <a class="nav-link" href="account">account</a>
                 </li>
 
                 <div class="profilepic d-flex">

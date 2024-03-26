@@ -1,17 +1,6 @@
 # WEB-cardgame
 this is the repo for a cargame website
 
-## Before you start
-1. create a database called 'cardgame'
-2. create a .env file in the root directory of the project which contains the following:
-```
-DB_HOST=localhost
-DB_DATABASE=cardgame
-DB_USERNAME=username
-DB_PASSWORD=password
-```
-
-
 ## How to run the project
 
 1. run ```composer install``` or ```composer update``` to install the dependencies

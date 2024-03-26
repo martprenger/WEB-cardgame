@@ -1,0 +1,21 @@
+nav.navbar.navbar-expand-lg.bg-body-tertiary {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background: rgba(44, 45, 28, 0.85) !important;
+
+}
+
+
+.nav-item a.nav-link {
+    color: rgba(38, 94, 11, 1);
+
+}
+
+a.nav-link {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+a.a.nav-link{
+    float: right;
+}

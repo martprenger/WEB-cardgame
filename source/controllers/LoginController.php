@@ -9,11 +9,13 @@ class LoginController
         require 'view/authentication/login.php';
     }
 
-    private function get(){
+    public function get(){
         require 'view/authentication/login.php';
     }
 
-    private function post() {
-        // ook dingen
+    public function post() {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        echo "Name: $name, Email: $email";
     }
 }

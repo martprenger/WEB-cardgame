@@ -10,6 +10,3 @@ class HomeController
         require 'view/home.php';
     }
 }
-
-$content = new HomeController();
-$content->index();

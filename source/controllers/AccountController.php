@@ -9,6 +9,3 @@ class AccountController
         require 'view/account.php';
     }
 }
-
-$content = new AccountController();
-$content->index();

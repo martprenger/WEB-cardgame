@@ -10,6 +10,3 @@ class RegisterController
     }
 
 }
-
-$content = new RegisterController();
-$content->index();

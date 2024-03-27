@@ -11,6 +11,3 @@ class CardController
 
 
 }
-
-$content = new CardController();
-$content->index();

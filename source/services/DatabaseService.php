@@ -1,10 +1,11 @@
 <?php
 
-namespace Source\models;
+namespace Source\services;
 
+use Source\models\User;
 use SQLite3;
 
-class DatabaseModel {
+class DatabaseService {
     private $db;
 
     public function __construct() {

@@ -9,17 +9,10 @@ class LoginController
         require 'view/authentication/login.php';
     }
 
-    public function handle(Request $request):Response
-    {
-        if $request.method === 'POST' {
-            $this->post($request);
-        } else {
-            $this->get($request);
-        }
-    }
+
 
     private function get(){
-        //dingen
+        require 'view/authentication/login.php';
     }
 
     private function post() {
@@ -30,6 +23,3 @@ class LoginController
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo 'POST';
 }
-
-$content = new LoginController();
-$content->index();

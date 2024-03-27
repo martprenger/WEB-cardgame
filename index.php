@@ -1,5 +1,7 @@
 <?php
 
+use Source\controllers\HomeController;
+use Source\controllers\LoginController;
 use Source\Router;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -23,8 +25,8 @@ $routes = [
     // Add more routes here
 ];
 
-$router = new Router($routes);
-$request = Request::createFromGlobals();
-$controller = $router->route($request);
-$respons = $controller->handle();
-$respons->send();
+$router = new Router();
+$router->addRoute('GET', '/login', [HomeController::class, 'index']);
+$router->addRoute('POST', '/login', [HomeController::class, 'post']);
+
+$router->matchRoute();

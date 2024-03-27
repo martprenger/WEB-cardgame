@@ -1,25 +1,45 @@
 <?php
 namespace Source;
-class Router {
+use Closure;
+use Exception;
 
-    private $methode;
-    private $routes;
+class Router
+{
+    protected $routes = [];
 
-    private $classname;
-
-    public function __construct($routes) {
-        $this->routes = $routes;
+    public function addRoute(string $method, string $url, $target): void
+    {
+        $this->routes[$method][$url] = $target;
     }
 
-    public function route($url) {
-        $path = parse_url($url, PHP_URL_PATH);
-        $path = ltrim($path, '/');
-
-        if (array_key_exists($path, $this->routes)) {
-            require $this->routes[$path];
+    public function matchRoute(): void
+    {
+        $method = $_SERVER['REQUEST_METHOD'];
+        $url = $_SERVER['REQUEST_URI'];
+        if (isset($this->routes[$method])) {
+            foreach ($this->routes[$method] as $routeUrl => $target) {
+                // Check if the route matches the requested URL
+                if ($routeUrl === $url) {
+                    // Check if the target is a closure or a controller method
+                    if ($target instanceof Closure) {
+                        // If it's a closure, directly execute it
+                        call_user_func($target);
+                        return;
+                    } elseif (is_array($target) && count($target) == 2 && is_callable($target)) {
+                        // If it's an array with two elements and callable, treat it as a controller method
+                        $controllerClass = $target[0];
+                        $methodName = $target[1];
+                        $controllerInstance = new $controllerClass();
+                        $controllerInstance->$methodName();
+                        return;
+                    } else {
+                        // Handle error: Invalid target format
+                        throw new Exception('Invalid target format');
+                    }
+                }
+            }
         } else {
-            header("HTTP/1.0 404 Not Found");
-            return require 'view/404.php';
+            require 'view/notefication_codes/404.php/';
         }
     }
 }

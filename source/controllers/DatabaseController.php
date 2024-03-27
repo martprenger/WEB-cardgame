@@ -2,7 +2,7 @@
 
 namespace Source\controllers;
 
-use Source\models\DatabaseModel;
+use Source\services\DatabaseService;
 
 class DatabaseController
 {
@@ -10,7 +10,7 @@ class DatabaseController
 
     public function __construct()
     {
-        $this->databaseModel = new DatabaseModel();
+        $this->databaseModel = new DatabaseService();
     }
 
     public function index()
@@ -24,6 +24,3 @@ class DatabaseController
         return $this->databaseModel->getUsers();
     }
 }
-
-$content = new DatabaseController();
-$content->index();

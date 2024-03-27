@@ -18,6 +18,7 @@ class Router
             foreach ($this->routes[$method] as $routeUrl => $target) {
                 if ($routeUrl === $url) {
                     call_user_func($target);
+                    return;
                 }
             }
         }

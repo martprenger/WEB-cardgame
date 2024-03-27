@@ -13,6 +13,8 @@
 
     <!-- Eigen css -->
     <link rel="stylesheet" href='view/css/navbar.css' >
+    <!-- css voor de login page -->
+    <link rel="stylesheet" href='view/css/login.css' >
     <!-- algemene css voor alle pages -->
     <link rel="stylesheet" href='view/css/pages.css' >
 

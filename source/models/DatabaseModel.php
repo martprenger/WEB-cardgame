@@ -12,13 +12,13 @@ class DatabaseModel {
         $this->db->exec('CREATE TABLE IF NOT EXISTS user (name STRING, email STRING, password STRING)');
     }
 
-    public function getUsers() {
+    public function getUsers():array {
         $results = $this->db->query('SELECT * FROM user');
-        $items = array();
+        $users = array();
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $items[] = $row;
+            $users[] = new User($row['name'], $row['email']);
         }
-        return $items;
+        return $users;
     }
 
     public function __destruct() {

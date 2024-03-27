@@ -2,8 +2,8 @@
 <p>Welcome in my database.</p>
 
 <?php
-foreach ($lines as $line) {
+foreach ($users as $usr) {
     #show username and email
-    echo $line['username'] . ' ' . $line['email'] . '<br>';
+    echo "<p>$usr->name $usr->email </p>";
 }
 ?>

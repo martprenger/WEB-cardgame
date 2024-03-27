@@ -1,7 +1,11 @@
 <?php
 namespace Source;
 class Router {
+
+    private $methode;
     private $routes;
+
+    private $classname;
 
     public function __construct($routes) {
         $this->routes = $routes;

@@ -24,4 +24,7 @@ $routes = [
 ];
 
 $router = new Router($routes);
-$router->route($_SERVER['REQUEST_URI']);
+$request = Request::createFromGlobals();
+$controller = $router->route($request);
+$respons = $controller->handle();
+$respons->send();

@@ -28,7 +28,7 @@ $routes = [
 $router = new Router();
 $router->addRoute('GET', '/login', function () {
     $controller = new LoginController();
-    $controller->get();
+    $controller->index();
 });
 
 $router->matchRoute();

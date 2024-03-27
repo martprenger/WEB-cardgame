@@ -9,8 +9,6 @@ class LoginController
         require 'view/authentication/login.php';
     }
 
-
-
     private function get(){
         require 'view/authentication/login.php';
     }
@@ -18,8 +16,4 @@ class LoginController
     private function post() {
         // ook dingen
     }
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    echo 'POST';
 }

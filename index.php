@@ -26,7 +26,9 @@ $routes = [
 ];
 
 $router = new Router();
-$router->addRoute('GET', '/login', [HomeController::class, 'index']);
-$router->addRoute('POST', '/login', [HomeController::class, 'post']);
+$router->addRoute('GET', '/login', function () {
+    $controller = new LoginController();
+    $controller->get();
+});
 
 $router->matchRoute();

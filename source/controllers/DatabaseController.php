@@ -2,28 +2,25 @@
 
 namespace Source\controllers;
 
+
+use Source\ORM\GetUsers;
 use Source\Request;
 use Source\services\DatabaseService;
 
 class DatabaseController implements ControllerInterface
 {
-    private $databaseModel;
-
-    public function __construct()
-    {
-        $this->databaseModel = new DatabaseService();
-    }
 
     public function handle(Request $request): void
     {
-        echo 'test';
         $users = $this->getUsers();
         require 'view/database.php';
     }
 
-    private function getUsers()
+    private function getUsers(): array
     {
-
-        return $this->databaseModel->getUsers();
+        $dbService = new DatabaseService();
+        $db = $dbService->getDb();
+        $orm = new GetUsers();
+        return $orm->getUsers($db);
     }
 }

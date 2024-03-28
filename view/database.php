@@ -4,6 +4,6 @@
 <?php
 foreach ($users as $usr) {
     #show username and email
-    echo "<p>$usr->name $usr->email </p>";
+    echo "<p>" . $usr->getName() . ": " . $usr->getEmail() . "</p>";
 }
 ?>

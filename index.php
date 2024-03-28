@@ -1,7 +1,9 @@
 <?php
 
+use Source\controllers\DatabaseController;
 use Source\controllers\HomeController;
 use Source\controllers\LoginController;
+use Source\Request;
 use Source\Router;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -26,14 +28,12 @@ $routes = [
 ];
 
 $router = new Router();
-$router->addRoute('GET', '/login', function () {
-    $controller = new LoginController();
-    $controller->get();
-});
 
-$router->addRoute('POST', '/login', function () {
-    $controller = new LoginController();
-    $controller->post();
-});
+$router->addRoute('GET', '/data', DatabaseController::class);
+$router->addRoute('GET', '/login', LoginController::class);
+$router->addRoute('POST', '/login', LoginController::class);
+$router->addRoute('GET', '/', HomeController::class);
 
-$router->matchRoute();
+$request = Request::createFromGlobals();
+$ctr = $router->matchRoute($request);
+$response = $ctr->handle($request);

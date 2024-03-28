@@ -17,10 +17,17 @@ class DatabaseService {
         $results = $this->db->query('SELECT * FROM user');
         $users = array();
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $users[] = new User($row['name'], $row['email']);
+            $users[] = new User($row['username'], $row['email'], 'password');
         }
         return $users;
     }
+
+    public function getDb(): SQLite3
+    {
+        return $this->db;
+    }
+
+
 
     public function __destruct() {
         $this->db->close();

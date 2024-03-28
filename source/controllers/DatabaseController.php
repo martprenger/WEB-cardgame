@@ -2,9 +2,10 @@
 
 namespace Source\controllers;
 
+use Source\Request;
 use Source\services\DatabaseService;
 
-class DatabaseController
+class DatabaseController implements ControllerInterface
 {
     private $databaseModel;
 
@@ -13,14 +14,16 @@ class DatabaseController
         $this->databaseModel = new DatabaseService();
     }
 
-    public function index()
+    public function handle(Request $request): void
     {
-        $lines = $this->getUsers();
+        echo 'test';
+        $users = $this->getUsers();
         require 'view/database.php';
     }
 
     private function getUsers()
     {
+
         return $this->databaseModel->getUsers();
     }
 }

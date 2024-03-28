@@ -19,7 +19,7 @@ require_once 'view/layouts/header.php';
                     <form method="POST" action="login">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                            <input type="text" class="form-control" id="name" name="username" placeholder="Enter your name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>

@@ -14,7 +14,7 @@ class LoginController implements ControllerInterface
         $method = $request->getMethod();
         if ($method === 'GET') {
             $this->get();
-        } else {
+        } elseif ($method === 'POST') {
             $this->post($request);
         }
     }

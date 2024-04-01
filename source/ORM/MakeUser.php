@@ -17,6 +17,4 @@ class MakeUser
 
         return $result !== false;
     }
-
-
 }

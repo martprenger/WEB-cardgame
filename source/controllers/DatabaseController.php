@@ -7,7 +7,7 @@ use Source\ORM\GetUsers;
 use Source\Request;
 use Source\services\DatabaseService;
 
-class DatabaseController implements ControllerInterface
+class DatabaseController
 {
 
     public function handle(Request $request): void

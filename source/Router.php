@@ -7,7 +7,7 @@ class Router
 {
     protected $routes = [];
 
-    public function addRoute(string $method, string $url, $controllerMethod): void
+    public function addRoute(string $method, string $url, $controllerMethod)
     {
         $this->routes[$method][$url] = $controllerMethod;
     }
@@ -19,7 +19,8 @@ class Router
 
         if (isset($this->routes[$method][$url])) {
             $controllerMethod = $this->routes[$method][$url];
-            return new $controllerMethod;
+            $controller = new $controllerMethod[0]();
+            return $controller->{$controllerMethod[1]}($request);
         } else {
             // Handle route not found
             echo "Route not found";

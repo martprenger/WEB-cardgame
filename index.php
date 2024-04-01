@@ -29,11 +29,10 @@ $routes = [
 
 $router = new Router();
 
-$router->addRoute('GET', '/data', DatabaseController::class);
-$router->addRoute('GET', '/login', LoginController::class);
-$router->addRoute('POST', '/login', LoginController::class);
-$router->addRoute('GET', '/', HomeController::class);
+$router->addRoute('GET', '/data', [DatabaseController::class, 'handle']);
+$router->addRoute('GET', '/login', [LoginController::class, 'get']);
+$router->addRoute('POST', '/login', [LoginController::class, 'post']);
+$router->addRoute('GET', '/', [HomeController::class, 'handle']);
 
 $request = Request::createFromGlobals();
-$ctr = $router->matchRoute($request);
-$response = $ctr->handle($request);
+$router->matchRoute($request);

@@ -7,19 +7,8 @@ use Source\ORM\MakeUser;
 use Source\Request;
 use Source\services\DatabaseService;
 
-class LoginController implements ControllerInterface
+class LoginController
 {
-    public function handle(Request $request)
-    {
-        $method = $request->getMethod();
-        if ($method === 'GET') {
-            $this->get();
-        } elseif ($method === 'POST') {
-            $this->post($request);
-        }
-    }
-
-
     public function get(){
         require 'view/authentication/login.php';
     }

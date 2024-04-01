@@ -2,11 +2,25 @@
 
 namespace Source\controllers;
 
-class RegisterController
+use Source\Request;
+
+class RegisterController implements ControllerInterface
 {
-    public function index()
+
+
+    #[\Override] public function handle(Request $request)
     {
-        require 'view/authentication/registration.php';
+        // TODO: Implement handle() method.
+        $method = $request->getMethod();
+        if ($method === 'GET') {
+            $this->get();
+        } else {
+            $this->post($request);
+        }
     }
 
+
+     public function get(){
+        require 'view/authentication/registration.php';
+    }
 }

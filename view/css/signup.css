@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #fdf5e6; /* Light peach background */
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: rgba(44, 45, 28, 0.88); /* White container background */
+
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.title {
+    text-align: center;
+    color: rgba(18, 12, 60, 1); /* Orange title color */
+    font-size: 32px;
+    margin-bottom: 30px; /* Space between title and form */
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.label {
+    font-size: 18px;
+    color: rgba(18, 12, 60, 1); /* Orange label color */
+}
+
+.input-group {
+    margin-bottom: 20px; /* Space between input groups */
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    background: rgba(217, 217, 217, 1);
+    border-radius: 15px;
+    box-sizing: border-box; /* Include padding in width */
+    font-size: 16px;
+}
+
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(217, 217, 217, 1); /* Orange button background */
+    color: rgba(18, 12, 60, 1); /* White button text color */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+}
+
+.button:hover {
+    background-color: #e65100; /* Darker orange on hover */
+}

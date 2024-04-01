@@ -1,3 +1,14 @@
-body{
+@font-face {
+    font-family: 'Hinted GWENT ExtraBold';
+    src: url('../../view/fonts/hinted-GWENT-ExtraBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
+body{
+    font-family: 'Hinted GWENT ExtraBold', sans-serif;
+    background-image : url('../../view/image/11360000_-_Kayran.webp');
+    background-repeat: no-repeat; /* Voorkomt dat de achtergrondafbeelding wordt herhaald */
+    background-size: cover; /* Past de achtergrondafbeelding aan om het volledige venster te bedekken */
+    background-position: center;
 }

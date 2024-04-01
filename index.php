@@ -3,6 +3,7 @@
 use Source\controllers\DatabaseController;
 use Source\controllers\HomeController;
 use Source\controllers\LoginController;
+use Source\controllers\RegisterController;
 use Source\Request;
 use Source\Router;
 
@@ -32,6 +33,7 @@ $router = new Router();
 $router->addRoute('GET', '/data', DatabaseController::class);
 $router->addRoute('GET', '/login', LoginController::class);
 $router->addRoute('POST', '/login', LoginController::class);
+$router->addRoute('GET', '/signup', RegisterController::class);
 $router->addRoute('GET', '/', HomeController::class);
 
 $request = Request::createFromGlobals();

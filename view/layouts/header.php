@@ -11,10 +11,14 @@
 <!--    <link href="path/to/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 <!--    <script src="path/to/bootstrap/js/bootstrap.min.js"></script>-->
 
+    <link rel="stylesheet" href="view/fonts/hinted-GWENT-ExtraBold.tff">
+
+
     <!-- Eigen css -->
     <link rel="stylesheet" href='view/css/navbar.css' >
     <!-- css voor de login page -->
     <link rel="stylesheet" href='view/css/login.css' >
+    <link rel="stylesheet" href='view/css/signup.css' >
     <!-- algemene css voor alle pages -->
     <link rel="stylesheet" href='view/css/pages.css' >
 

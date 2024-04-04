@@ -2,25 +2,40 @@
 
 namespace Source\controllers;
 
+use Source\models\User;
+use Source\ORM\MakeUser;
 use Source\Request;
+use Source\services\DatabaseService;
 
-class RegisterController implements ControllerInterface
+class RegisterController
 {
-
-
-    #[\Override] public function handle(Request $request)
-    {
-        // TODO: Implement handle() method.
-        $method = $request->getMethod();
-        if ($method === 'GET') {
-            $this->get();
-        } else {
-            $this->post($request);
-        }
-    }
-
 
      public function get(){
         require 'view/authentication/registration.php';
+    }
+
+    public function post(Request $request)
+    {
+        // Retrieve data from the request
+        $postData = $request->getSuperglobal('POST');
+
+        // Create a new instance of the User model and set its properties
+
+        $user = new User($postData['username'], $postData['email'],$postData['password']);
+        if ($postData['password'] !== $postData['password-redo']) {
+            // Passwords don't match, handle the error (e.g., redirect back with error message)
+            echo 'Passwords do not match';
+            return;
+        }
+
+
+        $dbService = new DatabaseService();
+        $db = $dbService->getDb();
+
+        $makeUser = new MakeUser();
+        // Save the user to the database
+        $makeUser->addUser($db, $user); // Assuming save() method is available in your ORM
+        // Redirect to the home
+        header('Location: /');
     }
 }

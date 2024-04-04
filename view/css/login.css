@@ -1,0 +1,49 @@
+.label-login {
+    font-size: 18px;
+    margin: 5px;
+    color: rgba(38, 94, 11, 1); /* Orange label color */
+}
+
+.input-field-login#username {
+    width: 100%;
+    padding: 10px;
+    background: rgba(217, 217, 217, 1);
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.input-field-login#password {
+    width: 100%;
+    padding: 10px;
+    background: rgba(217, 217, 217, 1);
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+
+}
+
+.title-login {
+    text-align: center;
+    color: rgba(38, 94, 11, 1); /* Orange title color */
+    font-size: 64px;
+    margin-top: 20px;
+; /* Space between title and form */
+}
+
+.button-login {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(217, 217, 217, 1); /* Orange button background */
+    color: rgba(38, 94, 11, 1); /* White button text color */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.button-login:hover {
+    background-color: #e65100; /* Darker orange on hover */
+}

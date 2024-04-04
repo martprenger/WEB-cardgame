@@ -7,19 +7,23 @@ body {
 
 .container {
     max-width: 400px;
-    margin: 100px auto;
+    margin: 50px auto;
     background-color: rgba(44, 45, 28, 0.88); /* White container background */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    box-shadow: 5px 5px 10px rgba(188, 113, 0, 1); /* Shadow effect */
 }
 
 .title {
     text-align: center;
     color: rgba(18, 12, 60, 1); /* Orange title color */
-    font-size: 32px;
-    margin-bottom: 30px; /* Space between title and form */
+    font-size: 64px;
+    margin-top: 20px;
+; /* Space between title and form */
 }
 
 .form {
@@ -28,6 +32,7 @@ body {
 
 .label {
     font-size: 18px;
+    margin: 5px;
     color: rgba(18, 12, 60, 1); /* Orange label color */
 }
 
@@ -35,12 +40,30 @@ body {
     margin-bottom: 20px; /* Space between input groups */
 }
 
-.input {
+.input-field#username {
     width: 100%;
     padding: 10px;
     background: rgba(217, 217, 217, 1);
-    border-radius: 15px;
-    box-sizing: border-box; /* Include padding in width */
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.input-field#password {
+    width: 100%;
+    padding: 10px;
+    background: rgba(217, 217, 217, 1);
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.input-field#confirm-password {
+    width: 100%;
+    padding: 10px;
+    background: rgba(217, 217, 217, 1);
+    border: none;
+    border-radius: 20px;
     font-size: 16px;
 }
 
@@ -59,3 +82,21 @@ body {
 .button:hover {
     background-color: #e65100; /* Darker orange on hover */
 }
+
+.profile-image-login {
+    width: 150px; /* Adjust size of the container */
+    height: 150px; /* Adjust size of the container */
+    border-radius: 50%; /* Make the container round */
+    overflow: hidden; /* Hide overflowing parts of the image */
+    margin-bottom: 20px; /* Add space between the image and other form elements */
+}
+.profile-image-login img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio of the image */
+    display: block; /* Prevent extra space below the image */
+}
+
+
+
+
+

@@ -9,24 +9,7 @@ use Source\Router;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$routes = [
 
-    'test' => 'view/test.php',
-    'register' => 'source/controllers/RegisterController.php',
-    'login' => 'source/controllers/LoginController.php',
-
-
-    'home' => 'source/controllers/HomeController.php',
-    'decks' => 'source/controllers/DeckController.php',
-    'cards' => 'source/controllers/CardController.php',
-    'account' => 'source/controllers/AccountController.php',
-
-
-    '404' => 'view/404.php',
-    'database' => 'source/controllers/DatabaseController.php',
-    '' => 'source/controllers/DatabaseController.php'
-    // Add more routes here
-];
 
 $router = new Router();
 $router->addRoute('GET', '/data', [DatabaseController::class, 'handle']);
@@ -34,6 +17,8 @@ $router->addRoute('GET', '/data', [DatabaseController::class, 'handle']);
 $router->addRoute('GET', '/login', [LoginController::class, 'get']);
 $router->addRoute('POST', '/login', [LoginController::class, 'post']);
 $router->addRoute('GET', '/', [HomeController::class, 'handle']);
+$router->addRoute('GET', '/signup', [RegisterController::class, 'get']);
+$router->addRoute('POST', '/signup', [RegisterController::class, 'post']);
 
 $request = Request::createFromGlobals();
 $router->matchRoute($request);

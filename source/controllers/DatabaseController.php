@@ -12,6 +12,7 @@ class DatabaseController
 
     public function handle(Request $request): void
     {
+
         $users = $this->getUsers();
         require 'view/database.php';
     }

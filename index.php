@@ -12,7 +12,9 @@ require __DIR__ . '/vendor/autoload.php';
 
 
 $router = new Router();
+$router->addRoute('GET', '/data/{id}', [DatabaseController::class, 'handle']);
 $router->addRoute('GET', '/data', [DatabaseController::class, 'handle']);
+
 
 $router->addRoute('GET', '/login', [LoginController::class, 'get']);
 $router->addRoute('POST', '/login', [LoginController::class, 'post']);

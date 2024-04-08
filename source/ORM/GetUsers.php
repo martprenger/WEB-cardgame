@@ -12,7 +12,7 @@ class GetUsers
         $results = $db->query('SELECT * FROM user');
         $users = array();
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $users[] = new User($row['username'], $row['email'], 'password');
+            $users[] = new User($row['name'], $row['email'], 'password');
         }
         return $users;
     }

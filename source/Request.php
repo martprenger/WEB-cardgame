@@ -48,5 +48,16 @@ class Request
         return isset($_SERVER['REQUEST_URI']) ? parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) : null;
     }
 
+    public function setParameters(array $matches)
+    {
+        $this->superglobals['REQUEST'] = $matches;
+
+    }
+
+    public function getParameter(string $name)
+    {
+        return isset($this->superglobals['REQUEST'][$name]) ? $this->superglobals['REQUEST'][$name] : null;
+    }
+
 
 }

@@ -9,4 +9,12 @@ class HomeController
         $users = ['Mart', 'Shane', 'Jorn'];
         require 'view/home.php';
     }
+
+   public function get()
+        {
+
+        }
+
+
+
 }

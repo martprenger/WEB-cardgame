@@ -4,19 +4,20 @@ namespace Source;
 
 class Request
 {
-    private $superglobals;
+//    private $superglobals;
 
-    public function __construct() {
-        $this->superglobals = [
-            'GET' => $_GET,
-            'POST' => $_POST,
-            'COOKIE' => $_COOKIE,
-            'SERVER' => $_SERVER,
-            'FILES' => $_FILES,
-            'REQUEST' => $_REQUEST,
-            'SESSION' => isset($_SESSION) ? $_SESSION : null,
-            'ENV' => $_ENV,
-        ];
+    public function __construct(private array $superglobals = []) {
+
+//        $this->superglobals = [
+//            'GET' => $_GET,
+//            'POST' => $_POST,
+//            'COOKIE' => $_COOKIE,
+//            'SERVER' => $_SERVER,
+//            'FILES' => $_FILES,
+//            'REQUEST' => $_REQUEST,
+//            'SESSION' => isset($_SESSION) ? $_SESSION : null,
+//            'ENV' => $_ENV,
+//        ];
     }
 
     public static function createFromGlobals(): Request {

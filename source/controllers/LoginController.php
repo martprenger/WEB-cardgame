@@ -3,31 +3,45 @@
 namespace Source\controllers;
 
 use Source\models\User;
+use Source\ORM\CheckUser;
+use Source\ORM\GetUsers;
 use Source\ORM\MakeUser;
 use Source\Request;
 use Source\services\DatabaseService;
 
 class LoginController
 {
-    public function get(){
+    public function loginView(){
         require 'view/authentication/login.php';
     }
 
-    public function post(Request $request)
+    public function loginPost(Request $request)
     {
         // Retrieve data from the request
         $postData = $request->getSuperglobal('POST');
 
-        // Create a new instance of the User model and set its properties
+        // Get the username and password from the form
+        $username = $postData['username'];
+        $password = $postData['password'];
 
-        $user = new User($postData['username'], $postData['email'],'123');
+        // Create a new instance of the User model with only username and password
+        //TODO remove new word ask bart and ralf
+        $user = new User($username,'email', $password);
 
+        // Get the database connection
         $dbService = new DatabaseService();
         $db = $dbService->getDb();
 
-        $makeUser = new MakeUser();
-        // Save the user to the database
-        $makeUser->addUser($db, $user); // Assuming save() method is available in your ORM
+        // Retrieve the user's data from the database
+        $userChecker = new CheckUser();
+        $checkUser = $userChecker->checkUser($db, $user->getName(), $user->getPassword());
+
+        if ($checkUser) {
+            // if user exits add remember token to db and cookies of user
+            echo '\n user exists';
+        } else {
+            echo '\n user does not exists';
+        }
 
     }
 }

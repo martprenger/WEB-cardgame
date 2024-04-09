@@ -17,8 +17,8 @@ $router->addRoute('GET', '/data/{id}', [DatabaseController::class, 'handle']);
 $router->addRoute('GET', '/data', [DatabaseController::class, 'handle']);
 
 
-$router->addRoute('GET', '/login', [LoginController::class, 'get']);
-$router->addRoute('POST', '/login', [LoginController::class, 'post']);
+$router->addRoute('GET', '/login', [LoginController::class, 'loginView']);
+$router->addRoute('POST', '/login', [LoginController::class, 'loginPost']);
 $router->addRoute('GET', '/', [HomeController::class, 'handle']);
 $router->addRoute('GET', '/signup', [RegisterController::class, 'get']);
 $router->addRoute('POST', '/signup', [RegisterController::class, 'post']);

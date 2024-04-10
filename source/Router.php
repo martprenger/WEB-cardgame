@@ -2,10 +2,12 @@
 namespace Source;
 use Closure;
 use Exception;
+use Source\middleware\Middleware;
 
 class Router
 {
     protected $routes = [];
+    protected $middlewares = [];
 
     public function addRoute(string $method, string $url, $controllerMethod)
     {
@@ -18,6 +20,10 @@ class Router
         $this->routes[$method][$parsedUrl] = $controllerMethod;
     }
 
+    public function addMiddleware(Middleware $middleware)
+    {
+        $this->middlewares[] = $middleware;
+    }
 
     public function checkUrl(Request $request)
     {
@@ -30,6 +36,10 @@ class Router
     {
         $method = $request->getMethod();
         $url = $request->getPath();
+
+        foreach ($this->middlewares as $middleware) {
+            $middleware->handle($request);
+        }
 
         foreach ($this->routes[$method] as $route => $controllerMethod) {
             // Convert route string to regex

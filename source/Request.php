@@ -2,22 +2,13 @@
 
 namespace Source;
 
+use Source\models\User;
+
 class Request
 {
-//    private $superglobals;
+    private $user;
 
     public function __construct(private array $superglobals = []) {
-
-//        $this->superglobals = [
-//            'GET' => $_GET,
-//            'POST' => $_POST,
-//            'COOKIE' => $_COOKIE,
-//            'SERVER' => $_SERVER,
-//            'FILES' => $_FILES,
-//            'REQUEST' => $_REQUEST,
-//            'SESSION' => isset($_SESSION) ? $_SESSION : null,
-//            'ENV' => $_ENV,
-//        ];
     }
 
     public static function createFromGlobals(): Request {
@@ -60,5 +51,17 @@ class Request
         return isset($this->superglobals['REQUEST'][$name]) ? $this->superglobals['REQUEST'][$name] : null;
     }
 
+    public function getCookie($name) {
+        return isset($this->superglobals['COOKIE'][$name]) ? $this->superglobals['COOKIE'][$name] : null;
+    }
+
+    public function setUser($user) {
+        $this->user = $user;
+    }
+
+    public function getUser() {
+        return $this->user;
+    }
 
 }
+

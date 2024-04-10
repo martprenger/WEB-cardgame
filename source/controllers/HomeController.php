@@ -2,19 +2,19 @@
 
 namespace Source\controllers;
 
+use Source\Request;
+
 class HomeController
 {
-    public function handle()
+    public function handle(Request $request)
     {
-        $users = ['Mart', 'Shane', 'Jorn'];
+        $user = $request->getUser();
+        echo $user->getName();
         require 'view/home.php';
     }
 
    public function get()
-        {
+   {
 
-        }
-
-
-
+   }
 }

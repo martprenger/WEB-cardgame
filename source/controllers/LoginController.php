@@ -5,6 +5,7 @@ namespace Source\controllers;
 use Source\models\User;
 use Source\ORM\CheckUser;
 use Source\ORM\GetUsers;
+use Source\ORM\InsertCookie;
 use Source\ORM\MakeUser;
 use Source\Request;
 use Source\services\DatabaseService;
@@ -37,6 +38,10 @@ class LoginController
         $checkUser = $userChecker->checkUser($db, $user->getName(), $user->getPassword());
 
         if ($checkUser) {
+            $token = bin2hex(random_bytes(16));
+            setcookie('remember_me', $token, time() + (86400 * 30), "/");
+            $cookieSetter = new InsertCookie();
+            $cookieSetter->setCookie($db, $user->getName(), $token);
             // if user exits add remember token to db and cookies of user
             echo '\n user exists';
         } else {

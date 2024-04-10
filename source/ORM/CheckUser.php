@@ -26,5 +26,27 @@ class CheckUser
 
         // If the user does not exist, return false
         return false;
+    }
+
+
+    public function checkCookie(SQLite3 $db, string $token): ?User
+    {
+        // Prepare the SQL statement
+        $stmt = $db->prepare('SELECT * FROM user WHERE remember_token = :token');
+        $stmt->bindValue(':token', $token, SQLITE3_TEXT);
+
+        // Execute the prepared statement
+        $result = $stmt->execute();
+
+        // Fetch the result
+        $user = $result->fetchArray(SQLITE3_ASSOC);
+
+        // If the user exists, return the User object
+        if ($user) {
+            return new User($user['name'], $user['password'], $user['remember_token']);
         }
+
+        // If the user does not exist, return null
+        return null;
+    }
 }

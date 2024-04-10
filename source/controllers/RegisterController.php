@@ -3,13 +3,19 @@
 namespace Source\controllers;
 
 use Source\models\User;
-use Source\ORM\GetUsers;
-use Source\ORM\MakeUser;
+use Source\ORM\UserRepo;
 use Source\Request;
 use Source\services\DatabaseService;
 
 class RegisterController
 {
+
+    private UserRepo $userRepo;
+
+    public function __construct(UserRepo $userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
 
      public function get(){
         require 'view/authentication/registration.php';
@@ -30,15 +36,7 @@ class RegisterController
             return;
         }
 
-
-        $dbService = new DatabaseService();
-        $db = $dbService->getDb();
-
-
-
-        $makeUser = new MakeUser();
-        // Save the user to the database
-        $makeUser->addUser($db, $user); // Assuming save() method is available in your ORM
+        $this->userRepo->createUser($user);
         // Redirect to the home
         header('Location: /');
     }

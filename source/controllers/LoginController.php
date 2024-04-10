@@ -3,7 +3,7 @@
 namespace Source\controllers;
 
 use Source\models\User;
-use Source\ORM\CheckUser;
+use Source\ORM\UserRepo;
 use Source\ORM\GetUsers;
 use Source\ORM\InsertCookie;
 use Source\ORM\MakeUser;
@@ -12,6 +12,13 @@ use Source\services\DatabaseService;
 
 class LoginController
 {
+    private UserRepo $userRepo;
+
+    public function __construct($userRepo)
+    {
+        $this->userRepo = $userRepo;
+    }
+
     public function loginView(){
         require 'view/authentication/login.php';
     }
@@ -30,18 +37,14 @@ class LoginController
         $user = new User($username,'email', $password);
 
         // Get the database connection
-        $dbService = new DatabaseService();
-        $db = $dbService->getDb();
 
         // Retrieve the user's data from the database
-        $userChecker = new CheckUser();
-        $checkUser = $userChecker->checkUser($db, $user->getName(), $user->getPassword());
+        $checkUser = $this->userRepo->checkUser($user->getName(), $user->getPassword());
 
         if ($checkUser) {
             $token = bin2hex(random_bytes(16));
             setcookie('remember_me', $token, time() + (86400 * 30), "/");
-            $cookieSetter = new InsertCookie();
-            $cookieSetter->setCookie($db, $user->getName(), $token);
+            $this->userRepo->setCookie($user->getName(), $token);
             // if user exits add remember token to db and cookies of user
             echo '\n user exists';
         } else {

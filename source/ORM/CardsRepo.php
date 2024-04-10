@@ -6,20 +6,27 @@ use Source\models\Card;
 use Source\models\Attribute;
 use SQLite3;
 
-class GetCardsAndAttributes
+class CardsRepo
 {
-    public function getCardsAndAttributes(SQLite3 $db): array
+    private $db;
+
+    public function __construct(SQLite3 $db)
+    {
+        $this->db = $db;
+    }
+
+    public function getCardsAndAttributes(): array
     {
         $cardsAndAttributes = [];
 
         // Query to retrieve cards
-        $results = $db->query('SELECT * FROM Cards');
+        $results = $this->db->query('SELECT * FROM Cards');
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
             // Create card object
             $card = new Card($row['name'], $row['category'], $row['ability'], $row['flavor'], []);
 
             // Query to retrieve attributes for this card
-            $attributesResult = $db->query("SELECT * FROM Attributes WHERE card_id = '{$row['id']}'");
+            $attributesResult = $this->db->query("SELECT * FROM Attributes WHERE card_id = '{$row['id']}'");
             $attributes = [];
             while ($attributeRow = $attributesResult->fetchArray(SQLITE3_ASSOC)) {
                 // Create attribute object and add to attributes array

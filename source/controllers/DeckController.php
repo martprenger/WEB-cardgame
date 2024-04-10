@@ -11,6 +11,7 @@ class DeckController
     {
         $user = $request->getUser();
         if ($user) {
+
         }
         require 'view/decks.php';
     }

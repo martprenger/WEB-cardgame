@@ -55,7 +55,7 @@ class Router
                 // Combine route parameters with request parameters
                 $request->setParameters($matches);
 
-                $controller = new $controllerMethod[0]();
+                $controller = $controllerMethod[0];
                 return $controller->{$controllerMethod[1]}($request);
             }
         }

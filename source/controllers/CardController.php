@@ -2,14 +2,20 @@
 
 namespace Source\controllers;
 
-use Source\ORM\GetCardsAndAttributes;
+use Source\ORM\CardsRepo;
 
 class CardController
 {
+    private CardsRepo $cardsRepo;
+
+    public function __construct($cardsRepo)
+    {
+        $this->cardsRepo = $cardsRepo;
+    }
+
     public function index()
     {
-        $db = new DatabaseController();
-        $cards = $db->getCards();
+        $cards = $this->cardsRepo->getCardsAndAttributes();
 
         require 'view/cards.php';
     }

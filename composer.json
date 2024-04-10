@@ -1,7 +1,8 @@
 {
   "require": {
     "vlucas/phpdotenv": "^5.3",
-    "ext-sqlite3": "*"
+    "ext-sqlite3": "*",
+    "ext-http": "*"
   },
   "autoload": {
     "psr-4": {

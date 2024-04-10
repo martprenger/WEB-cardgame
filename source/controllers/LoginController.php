@@ -45,11 +45,14 @@ class LoginController
             $token = bin2hex(random_bytes(16));
             setcookie('remember_me', $token, time() + (86400 * 30), "/");
             $this->userRepo->setCookie($user->getName(), $token);
-            // if user exits add remember token to db and cookies of user
-            echo '\n user exists';
+            //redirect
+            if (isset($_COOKIE['last_path'])) {
+                header('Location: ' . $_COOKIE['last_path']);
+            } else {
+                header('Location: /');
+            }
         } else {
-            echo '\n user does not exists';
+            header('Location: /login');
         }
-
     }
 }

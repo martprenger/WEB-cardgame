@@ -1,10 +1,9 @@
 <?php
 
+use Source\controllers\AuthController;
 use Source\controllers\CardController;
 use Source\controllers\DatabaseController;
 use Source\controllers\HomeController;
-use Source\controllers\LoginController;
-use Source\controllers\RegisterController;
 use Source\middleware\Authentiecation;
 use Source\ORM\CardsRepo;
 use Source\ORM\UserRepo;
@@ -16,8 +15,7 @@ $userRepo = new UserRepo($db);
 $cardsRepo = new CardsRepo($db);
 
 $database = new DatabaseController($userRepo, $cardsRepo);
-$login = new LoginController($userRepo);
-$register = new RegisterController($userRepo);
+$auth = new AuthController($userRepo);
 $home = new HomeController();
 $card = new CardController($cardsRepo);
 
@@ -25,14 +23,17 @@ $router = new Router();
 
 $router->addMiddleware(new Authentiecation($userRepo));
 
+
+$router->addRoute('GET', '/', [$home, 'handle']);
+
 $router->addRoute('GET', '/data/{id}', [$database, 'handle']);
 $router->addRoute('GET', '/data', [$database, 'handle']);
 
-$router->addRoute('GET', '/login', [$login, 'loginView']);
-$router->addRoute('POST', '/login', [$login, 'loginPost']);
-$router->addRoute('GET', '/', [$home, 'handle']);
-$router->addRoute('GET', '/signup', [$register, 'get']);
-$router->addRoute('POST', '/signup', [$register, 'post']);
+$router->addRoute('GET', '/login', [$auth, 'loginView']);
+$router->addRoute('POST', '/login', [$auth, 'loginPost']);
+$router->addRoute('GET', '/signup', [$auth, 'register']);
+$router->addRoute('POST', '/signup', [$auth, 'registerPost']);
+$router->addRoute('GET', '/logout', [$auth, 'logout']);
 
 $router->addRoute('GET', '/cards', [$card, 'index']);
 return $router;

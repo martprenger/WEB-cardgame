@@ -51,8 +51,12 @@ class Request
         return isset($this->superglobals['REQUEST'][$name]) ? $this->superglobals['REQUEST'][$name] : null;
     }
 
+    public function setCookie($name, $value) {
+        $this->superglobals['COOKIE'][$name] = $value;
+    }
+
     public function getCookie($name) {
-        return isset($this->superglobals['COOKIE'][$name]) ? $this->superglobals['COOKIE'][$name] : null;
+        return $this->superglobals['COOKIE'][$name] ?? null;
     }
 
     public function setUser($user) {
@@ -62,6 +66,10 @@ class Request
     public function getUser() {
         return $this->user;
     }
+
+
+
+
 
 }
 

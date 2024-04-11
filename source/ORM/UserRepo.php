@@ -35,7 +35,7 @@ class UserRepo
         return false;
     }
 
-    public function setCookie(string $username, string $rememberToken)
+    public function setCookie(string $username, string $rememberToken): void
     {
         // Prepare the SQL statement
         $stmt = $this->db->prepare('UPDATE user SET remember_token = :token WHERE name = :name');

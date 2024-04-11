@@ -9,7 +9,7 @@ class CardController
 {
     private CardsRepo $cardsRepo;
 
-    public function __construct($cardsRepo)
+    public function __construct(CardsRepo $cardsRepo)
     {
         $this->cardsRepo = $cardsRepo;
     }

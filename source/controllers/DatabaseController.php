@@ -4,16 +4,15 @@ namespace Source\controllers;
 
 
 use Source\ORM\CardsRepo;
-use Source\ORM\GetUsers;
+use Source\ORM\UserRepo;
 use Source\Request;
-use Source\services\DatabaseService;
 
 class DatabaseController
 {
-    private $userRepo;
-    private $cardRepo;
+    private UserRepo $userRepo;
+    private CardsRepo $cardRepo;
 
-    public function __construct($userRepo, $cardRepo)
+    public function __construct(UserRepo $userRepo, CardsRepo $cardRepo)
     {
         $this->userRepo = $userRepo;
         $this->cardRepo = $cardRepo;

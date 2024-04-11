@@ -4,7 +4,6 @@ namespace Source\middleware;
 
 use Source\ORM\UserRepo;
 use Source\Request;
-use Source\services\DatabaseService;
 
 class Authentiecation implements Middleware
 {

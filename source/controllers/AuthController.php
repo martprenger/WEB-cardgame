@@ -2,7 +2,6 @@
 
 namespace Source\controllers;
 
-use Random\RandomException;
 use Source\models\User;
 use Source\ORM\UserRepo;
 use Source\Request;

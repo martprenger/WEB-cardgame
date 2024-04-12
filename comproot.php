@@ -9,17 +9,22 @@ use Source\middleware\Authentiecation;
 use Source\ORM\CardsRepo;
 use Source\ORM\UserRepo;
 use Source\Router;
+use Source\services\Authorization;
 
 $db = new SQLite3('database/database.db');
 
 $userRepo = new UserRepo($db);
 $cardsRepo = new CardsRepo($db);
 
+//services
+$authorizer = new Authorization();
+
+//controllers
 $database = new DatabaseController($userRepo, $cardsRepo);
 $auth = new AuthController($userRepo);
-$home = new HomeController();
+$home = new HomeController($authorizer);
 $card = new CardController($cardsRepo);
-$deck = new DeckController();
+$deck = new DeckController($authorizer);
 
 $router = new Router();
 

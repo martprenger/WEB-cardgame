@@ -3,24 +3,19 @@
 namespace Source\controllers;
 
 use Source\Request;
+use Source\services\Authorization;
 
 class DeckController
 {
+    private Authorization $auth;
+    public function __construct(Authorization $auth)
+    {
+        $this->auth = $auth;
+    }
 
     public function show(Request $request)
     {
-        $user = $request->getUser();
-
-        if ($user === null) {
-            setcookie('last_path', $request->getPath(), time() + 3600, "/"); // 3600 seconds = 1 hour
-            header('Location: /login');
-            exit();
-        }
-
-        if ($user->getRole() !== 'premium' && $user->getRole() !== 'admin') {
-            header('Location: /');
-            exit();
-        }
+        $this->auth->requireRole($request, ['admin', 'premium']);
 
         require 'view/decks.php';
     }

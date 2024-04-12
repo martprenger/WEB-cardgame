@@ -30,12 +30,11 @@ class AuthController
         $password = $postData['password'];
 
         // Create a new instance of the User model with only username and password
-        $user = new User($username, 'email', $password);
 
         // Retrieve the user's data from the database
-        $checkUser = $this->userRepo->checkUser($user->getName(), $user->getPassword());
+        $user = $this->userRepo->checkUser($username, $password);
 
-        if ($checkUser) {
+        if ($user) {
             $lastPath = $request->getCookie('lastPath');
             if (!$lastPath) {
                 $lastPath = '/';
@@ -59,7 +58,7 @@ class AuthController
         // Create a new instance of the User model and set its properties
         $hashedPassword = password_hash($postData['password'], PASSWORD_DEFAULT);
 
-        $user = new User($postData['username'], $postData['email'], $hashedPassword);
+        $user = new User($postData['username'], $postData['email'], $hashedPassword, 'user');
         if ($postData['password'] !== $postData['password-redo']) {
             // Passwords don't match, handle the error (e.g., redirect back with error message)
             echo 'Passwords do not match';

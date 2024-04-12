@@ -18,8 +18,8 @@ class Authentiecation implements Middleware
     {
         $token = $request->getCookie('remember_me');
 
-        if ($token) {
 
+        if ($token) {
             $user = $this->userRepo->checkCookie($token);
 
             if ($user) {

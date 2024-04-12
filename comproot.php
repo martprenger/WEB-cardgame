@@ -3,6 +3,7 @@
 use Source\controllers\AuthController;
 use Source\controllers\CardController;
 use Source\controllers\DatabaseController;
+use Source\controllers\DeckController;
 use Source\controllers\HomeController;
 use Source\middleware\Authentiecation;
 use Source\ORM\CardsRepo;
@@ -18,11 +19,11 @@ $database = new DatabaseController($userRepo, $cardsRepo);
 $auth = new AuthController($userRepo);
 $home = new HomeController();
 $card = new CardController($cardsRepo);
+$deck = new DeckController();
 
 $router = new Router();
 
 $router->addMiddleware(new Authentiecation($userRepo));
-
 
 $router->addRoute('GET', '/', [$home, 'handle']);
 
@@ -36,4 +37,5 @@ $router->addRoute('POST', '/signup', [$auth, 'registerPost']);
 $router->addRoute('GET', '/logout', [$auth, 'logout']);
 
 $router->addRoute('GET', '/cards', [$card, 'index']);
+$router->addRoute('GET', '/decks', [$deck, 'show']);
 return $router;

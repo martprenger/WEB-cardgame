@@ -14,7 +14,7 @@ class UserRepo
         $this->db = $db;
     }
 
-    public function checkUser(string $username, string $password): bool
+    public function checkUser(string $username, string $password): ?User
     {
         // Prepare the SQL statement
         $stmt = $this->db->prepare('SELECT * FROM user WHERE name = :name');
@@ -28,11 +28,14 @@ class UserRepo
 
         // If the user exists, verify the password
         if ($user) {
-            return password_verify($password, $user['password']);
+            if (password_verify($password, $user['password'])) {
+                $userr = new User($user['name'], $user['email'], $user['password'], $user['role']);
+                return $userr;
+            }
         }
 
         // If the user does not exist, return false
-        return false;
+        return null;
     }
 
     public function setCookie(string $username, string $rememberToken): void
@@ -60,7 +63,7 @@ class UserRepo
 
         // If the user exists, return the User object
         if ($user) {
-            return new User($user['name'], $user['password'], $user['remember_token']);
+            return new User($user['name'], $user['password'], $user['remember_token'], $user['role']);
         }
 
         // If the user does not exist, return null
@@ -71,7 +74,7 @@ class UserRepo
         $results = $this->db->query('SELECT * FROM user');
         $users = array();
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $users[] = new User($row['name'], $row['email'], $row['password']);
+            $users[] = new User($row['name'], $row['email'], $row['password'], $row['role']);
         }
         return $users;
     }

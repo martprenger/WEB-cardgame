@@ -13,11 +13,11 @@ class DeckController
 
     private DecksRepo $decksRepo;
 
-    public function __construct(Authorization $auth, DecksRepo $decksRepo)
-    {
-        $this->auth = $auth;
-        $this->decksRepo = $decksRepo;
-    }
+//    public function __construct(Authorization $auth, DecksRepo $decksRepo)
+//    {
+//        $this->auth = $auth;
+//        $this->decksRepo = $decksRepo;
+//    }
 
 
     public function show(Request $request)

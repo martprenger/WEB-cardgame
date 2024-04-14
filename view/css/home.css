@@ -1,0 +1,27 @@
+.container_body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container_newcards, .container_news, .container_decks {
+    width: 400px;
+    margin: 50px;
+    background-color: rgba(44, 45, 28, 0.88); /* White container background */
+
+    flex-direction: column;
+
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px rgba(188, 113, 0, 1); /* Shadow effect */
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tiles_home {
+    display: block;
+    color: rgba(18, 12, 60, 1);
+
+}

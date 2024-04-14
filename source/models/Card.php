@@ -8,8 +8,8 @@ class Card {
     #[Column(name: 'id')]
     private int $id;
 
-    #[Column(name: 'art_id')]
-    private int $art_id;
+    #[Column(name: 'art')]
+    private string $art;
 
     #[Column(name: 'name')]
     private string $name;
@@ -26,9 +26,9 @@ class Card {
     #[OneToMany(targetEntity: Attribute::class, mappedBy: 'card')]
     private array $attributes;
 
-    public function __construct(int $id, int $art_id, string $name, string $category, string $ability, string $flavor, array $attributes) {
+    public function __construct(int $id, string $name, string $category, string $ability, string $flavor, string $art, array $attributes) {
         $this->id = $id;
-        $this->art_id = $art_id;
+        $this->art = $art;
         $this->name = $name;
         $this->category = $category;
         $this->ability = $ability;
@@ -41,8 +41,8 @@ class Card {
         return $this->id;
     }
 
-    public function getArtId(): int {
-        return $this->art_id;
+    public function getArt(): string {
+        return $this->art;
     }
 
     public function getName(): string {

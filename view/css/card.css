@@ -9,7 +9,7 @@
 }
 
 .card {
-    flex: 1 0 21%; /* This will allow 4 cards per row, adjust as needed */
+    flex: 1 0 10%; /* This will allow 8 cards per row */
     margin: 10px;
     padding: 20px;
     border-radius: 10px;
@@ -24,32 +24,17 @@
     margin-bottom: 5px; /* Adjust as needed for spacing between images */
 }
 
-.image-stack {
+.G1-cardart {
     position: relative;
     top: 0;
     left: 0;
 }
-.image1 {
+.G1-cardart img:first-child {
     position: relative;
     top: 0;
     left: 0;
 }
-.image2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.image3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.image4 {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.image5 {
+.G1-cardart img:not(:first-child) {
     position: absolute;
     top: 0;
     left: 0;

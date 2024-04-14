@@ -22,10 +22,6 @@ class CardsRepo
         // Query to retrieve cards
         $results = $this->db->query('SELECT * FROM Cards');
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            // Create card object
-            $card = new Card((int)$row['id'], (int)$row['art_id'], $row['name'], $row['category'], $row['ability'], $row['flavor'], []);
-
-
             // Query to retrieve attributes for this card
             $attributesResult = $this->db->query("SELECT * FROM Attributes WHERE card_id = '{$row['id']}'");
             $attributes = [];
@@ -47,7 +43,7 @@ class CardsRepo
                 );
             }
 
-            $card = new Card((int)$row['id'], (int)$row['art_id'], $row['name'], $row['category'], $row['ability'], $row['flavor'], $attributes);
+            $card = new Card((int)$row['id'], $row['name'], $row['category'], $row['ability'], $row['flavor'], $row['art'], $attributes);
 
             // Add card and its attributes to the result array
 

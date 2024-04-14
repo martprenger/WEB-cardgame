@@ -21,11 +21,11 @@ def create_database(json_data):
         # Create tables
         c.execute('''CREATE TABLE IF NOT EXISTS Cards (
                         id INTEGER PRIMARY KEY,
-                        art_id INTEGER,
                         name TEXT,
                         category TEXT,
                         ability TEXT,
-                        flavor TEXT
+                        flavor TEXT,
+                        art TEXT
                      )''')
 
         c.execute('''CREATE TABLE IF NOT EXISTS Attributes (
@@ -51,8 +51,14 @@ def create_database(json_data):
             if 'name' in card_data and 'category' in card_data and 'ability' in card_data and 'flavor' in card_data and 'attributes' in card_data:
                 try:
                     # Insert into Cards table
-                    c.execute("INSERT INTO Cards (id, art_id, name, category, ability, flavor) VALUES (?, ?, ?, ?, ?, ?)",
-                              (card_data['id'].get('card'), card_data['id'].get('art'), card_data['name'], card_data['category'], card_data['ability'], card_data['flavor']))
+
+                    art_url = f"https://api.gwent.one/?key=data&id={card_data['id'].get('card')}&response=html&html=info&version=1.1.0"
+                    print(art_url)
+                    art = requests.get(art_url).text
+                    print(art)
+                    c.execute("INSERT INTO Cards (id, name, category, ability, flavor, art) VALUES (?, ?, ?, ?, ?, ?)",
+                        (card_data['id'].get('card'), card_data['name'], card_data['category'], card_data['ability'], card_data['flavor'], art))
+
 
                     # Insert into Attributes table
                     attributes = card_data['attributes']

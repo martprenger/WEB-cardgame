@@ -24,7 +24,8 @@ def create_database(json_data):
                         name TEXT,
                         category TEXT,
                         ability TEXT,
-                        flavor TEXT
+                        flavor TEXT,
+                        art TEXT
                      )''')
 
         c.execute('''CREATE TABLE IF NOT EXISTS Attributes (
@@ -50,17 +51,23 @@ def create_database(json_data):
             if 'name' in card_data and 'category' in card_data and 'ability' in card_data and 'flavor' in card_data and 'attributes' in card_data:
                 try:
                     # Insert into Cards table
-                    c.execute("INSERT INTO Cards (id, name, category, ability, flavor) VALUES (?, ?, ?, ?, ?)",
-                              (card_id, card_data['name'], card_data['category'], card_data['ability'], card_data['flavor']))
+
+                    art_url = f"https://api.gwent.one/?key=data&id={card_data['id'].get('card')}&response=html&html=info&version=1.1.0"
+                    print(art_url)
+                    art = requests.get(art_url).text
+                    print(art)
+                    c.execute("INSERT INTO Cards (id, name, category, ability, flavor, art) VALUES (?, ?, ?, ?, ?, ?)",
+                        (card_data['id'].get('card'), card_data['name'], card_data['category'], card_data['ability'], card_data['flavor'], art))
+
 
                     # Insert into Attributes table
                     attributes = card_data['attributes']
                     c.execute("INSERT INTO Attributes (card_id, set_name, type, armor, color, power, reach, artist, rarity, faction, related, provision, factionSecondary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                              (card_id, attributes.get('set'), attributes.get('type'), attributes.get('armor'), attributes.get('color'), attributes.get('power'), attributes.get('reach'), attributes.get('artist'), attributes.get('rarity'), attributes.get('faction'), attributes.get('related'), attributes.get('provision'), attributes.get('factionSecondary')))
+                              (card_data['id'].get('card'), attributes.get('set'), attributes.get('type'), attributes.get('armor'), attributes.get('color'), attributes.get('power'), attributes.get('reach'), attributes.get('artist'), attributes.get('rarity'), attributes.get('faction'), attributes.get('related'), attributes.get('provision'), attributes.get('factionSecondary')))
                 except sqlite3.IntegrityError:
-                    print(f"Skipping duplicate card with ID {card_id}.")
+                    print(f"Skipping duplicate card with ID {card_data['id'].get('card')}.")
             else:
-                print(f"Skipping card with ID {card_id} due to missing required fields.")
+                print(f"Skipping card with ID {card_data['id'].get('card')} due to missing required fields.")
 
         # Commit changes and close connection
         conn.commit()

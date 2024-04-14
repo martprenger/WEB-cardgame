@@ -4,6 +4,7 @@ require_once 'view/layouts/nav.php';
 ?>
 
 
+
 <body style="background-image : url('../view/image/Factions.webp')">
 <div class="container_body">
 
@@ -67,4 +68,5 @@ require_once 'view/layouts/nav.php';
 
 
 </body>
+
 

@@ -14,7 +14,7 @@ require_once 'view/layouts/header.php';
         <div class="collapse navbar-collapse container-fluid" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="">Home</a>
+                    <a class="nav-link " aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="cards">cards</a>
@@ -22,15 +22,6 @@ require_once 'view/layouts/header.php';
                 <li class="nav-item">
                     <a class="nav-link" href="decks">decks</a>
                 </li>
-
-                <li class="nav-item account ">
-                    <a class="nav-link" href="account">account</a>
-                </li>
-
-                <div class="profilepic d-flex">
-                    <img src="https://via.placeholder.com/50" alt="profile picture">
-                </div>
-
             </ul>
         </div>
     </div>
@@ -49,6 +40,9 @@ require_once 'view/layouts/header.php';
         <a class="dropdown-item" href="settings">Settings</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="logout">Logout</a>
+        </div>
+        <div class="profilepic d-flex justify-content-center">
+            <img src="https://via.placeholder.com/50" alt="profile picture" class="rounded-circle">
         </div>
     </div>
 </nav>

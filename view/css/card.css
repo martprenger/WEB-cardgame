@@ -1,0 +1,41 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    background: rgba(44, 45, 28, 0.85) !important;
+}
+
+.card {
+    flex: 1 0 10%; /* This will allow 8 cards per row */
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(44, 45, 28, 0.85);
+    color: rgba(38, 94, 11, 1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 5px; /* Adjust as needed for spacing between images */
+}
+
+.G1-cardart {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.G1-cardart img:first-child {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.G1-cardart img:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

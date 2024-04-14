@@ -23,10 +23,6 @@ require_once 'view/layouts/header.php';
                     <a class="nav-link" href="decks">decks</a>
                 </li>
 
-                <li class="nav-item account ">
-                    <a class="nav-link" href="account">account</a>
-                </li>
-
                 <div class="profilepic d-flex">
                     <img src="https://via.placeholder.com/50" alt="profile picture">
                 </div>

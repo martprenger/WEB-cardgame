@@ -46,7 +46,7 @@ class Attribute
     #[JoinColumn(name: 'card_id', referencedColumnName: 'id')]
     private Card $card;
 
-    public function __construct(string $setName, string $type, int $armor, string $color, int $power, int $reach, string $artist, string $rarity, string $faction, string $related, int $provision, string $factionSecondary, Card $card)
+    public function __construct(string $setName, string $type, int $armor, string $color, int $power, int $reach, string $artist, string $rarity, string $faction, string $related, int $provision, string $factionSecondary)
     {
         $this->setName = $setName;
         $this->type = $type;
@@ -60,7 +60,6 @@ class Attribute
         $this->related = $related;
         $this->provision = $provision;
         $this->factionSecondary = $factionSecondary;
-        $this->card = $card;
     }
 
 // getters for properties
@@ -122,10 +121,5 @@ class Attribute
     public function getFactionSecondary(): string
     {
         return $this->factionSecondary;
-    }
-
-    public function getCard(): Card
-    {
-        return $this->card;
     }
 }

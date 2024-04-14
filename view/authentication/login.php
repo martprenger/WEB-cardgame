@@ -4,7 +4,7 @@ require_once 'view/layouts/header.php';
 ?>
 
 
-<body style="background-image : url('../../view/image/Factions.webp')";>
+<body style="background-image : url('../image/Factions.webp')";>
 <h1 class="title-login">LOGIN</h1>
 <div class="container">
     <div class="profile-image-login">

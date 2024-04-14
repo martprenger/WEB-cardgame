@@ -1,4 +1,7 @@
 <div class='card'>
-    <h2> <?php echo $card['card']->getName() ?></h2>
-    <p> <?php echo $card['attributes'][0]->getPower() ?> </p>
+    <?php $attributes = $card->getAttributes()[0]; ?>
+
+    <?= $card->getArt() ?>
+
+    <h8> <?= $card->getName() ?></h8>
 </div>

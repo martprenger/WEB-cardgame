@@ -23,5 +23,6 @@
     <link rel="stylesheet" href='view/css/signup.css' >
     <!-- algemene css voor alle pages -->
     <link rel="stylesheet" href='view/css/pages.css' >
+    <link rel="stylesheet" href='view/css/card.css' >
 
 </head>

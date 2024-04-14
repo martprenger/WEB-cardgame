@@ -21,6 +21,7 @@ def create_database(json_data):
         # Create tables
         c.execute('''CREATE TABLE IF NOT EXISTS Cards (
                         id INTEGER PRIMARY KEY,
+                        art_id INTEGER,
                         name TEXT,
                         category TEXT,
                         ability TEXT,
@@ -50,17 +51,17 @@ def create_database(json_data):
             if 'name' in card_data and 'category' in card_data and 'ability' in card_data and 'flavor' in card_data and 'attributes' in card_data:
                 try:
                     # Insert into Cards table
-                    c.execute("INSERT INTO Cards (id, name, category, ability, flavor) VALUES (?, ?, ?, ?, ?)",
-                              (card_id, card_data['name'], card_data['category'], card_data['ability'], card_data['flavor']))
+                    c.execute("INSERT INTO Cards (id, art_id, name, category, ability, flavor) VALUES (?, ?, ?, ?, ?, ?)",
+                              (card_data['id'].get('card'), card_data['id'].get('art'), card_data['name'], card_data['category'], card_data['ability'], card_data['flavor']))
 
                     # Insert into Attributes table
                     attributes = card_data['attributes']
                     c.execute("INSERT INTO Attributes (card_id, set_name, type, armor, color, power, reach, artist, rarity, faction, related, provision, factionSecondary) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                              (card_id, attributes.get('set'), attributes.get('type'), attributes.get('armor'), attributes.get('color'), attributes.get('power'), attributes.get('reach'), attributes.get('artist'), attributes.get('rarity'), attributes.get('faction'), attributes.get('related'), attributes.get('provision'), attributes.get('factionSecondary')))
+                              (card_data['id'].get('card'), attributes.get('set'), attributes.get('type'), attributes.get('armor'), attributes.get('color'), attributes.get('power'), attributes.get('reach'), attributes.get('artist'), attributes.get('rarity'), attributes.get('faction'), attributes.get('related'), attributes.get('provision'), attributes.get('factionSecondary')))
                 except sqlite3.IntegrityError:
-                    print(f"Skipping duplicate card with ID {card_id}.")
+                    print(f"Skipping duplicate card with ID {card_data['id'].get('card')}.")
             else:
-                print(f"Skipping card with ID {card_id} due to missing required fields.")
+                print(f"Skipping card with ID {card_data['id'].get('card')} due to missing required fields.")
 
         # Commit changes and close connection
         conn.commit()

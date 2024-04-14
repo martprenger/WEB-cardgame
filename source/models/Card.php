@@ -5,6 +5,12 @@ namespace Source\models;
 #[Entity]
 #[Table(name: 'card')]
 class Card {
+    #[Column(name: 'id')]
+    private int $id;
+
+    #[Column(name: 'art_id')]
+    private int $art_id;
+
     #[Column(name: 'name')]
     private string $name;
 
@@ -20,7 +26,9 @@ class Card {
     #[OneToMany(targetEntity: Attribute::class, mappedBy: 'card')]
     private array $attributes;
 
-    public function __construct(string $name, string $category, string $ability, string $flavor, array $attributes) {
+    public function __construct(int $id, int $art_id, string $name, string $category, string $ability, string $flavor, array $attributes) {
+        $this->id = $id;
+        $this->art_id = $art_id;
         $this->name = $name;
         $this->category = $category;
         $this->ability = $ability;
@@ -29,6 +37,14 @@ class Card {
     }
 
     // getters for properties
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function getArtId(): int {
+        return $this->art_id;
+    }
+
     public function getName(): string {
         return $this->name;
     }

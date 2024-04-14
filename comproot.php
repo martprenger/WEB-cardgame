@@ -43,5 +43,5 @@ $router->addRoute('GET', '/logout', [$auth, 'logout']);
 
 $router->addRoute('GET', '/cards', [$card, 'index']);
 $router->addRoute('GET', '/decks', [$deck, 'show']);
-$router->addRoute('POST', '/decks', [$deck, 'show']);
+$router->addRoute('POST', '/decks', [$deck, 'create_deck']);
 return $router;

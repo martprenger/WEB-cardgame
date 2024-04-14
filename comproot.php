@@ -7,11 +7,15 @@ use Source\controllers\DeckController;
 use Source\controllers\HomeController;
 use Source\middleware\Authentiecation;
 use Source\ORM\CardsRepo;
+use Source\ORM\TablesRepo;
 use Source\ORM\UserRepo;
 use Source\Router;
 use Source\services\Authorization;
 
 $db = new SQLite3('database/database.db');
+
+$creatTables = new TablesRepo($db);
+$creatTables->createTables();
 
 $userRepo = new UserRepo($db);
 $cardsRepo = new CardsRepo($db);

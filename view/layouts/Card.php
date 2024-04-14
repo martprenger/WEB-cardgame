@@ -1,3 +1,4 @@
+<a>
 <div class='card'>
     <?php $attributes = $card->getAttributes()[0]; ?>
 
@@ -5,3 +6,4 @@
 
     <h8> <?= $card->getName() ?></h8>
 </div>
+</a>

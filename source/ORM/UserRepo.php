@@ -29,7 +29,7 @@ class UserRepo
         // If the user exists, verify the password
         if ($user) {
             if (password_verify($password, $user['password'])) {
-                $userr = new User($user['name'], $user['email'], $user['password'], $user['role']);
+                $userr = new User($user['id'], $user['name'], $user['email'], $user['password'], $user['role']);
                 return $userr;
             }
         }
@@ -63,7 +63,7 @@ class UserRepo
 
         // If the user exists, return the User object
         if ($user) {
-            return new User($user['name'], $user['password'], $user['remember_token'], $user['role']);
+            return new User($user['id'], $user['name'], $user['password'], $user['remember_token'], $user['role']);
         }
 
         // If the user does not exist, return null
@@ -74,7 +74,7 @@ class UserRepo
         $results = $this->db->query('SELECT * FROM user');
         $users = array();
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            $users[] = new User($row['name'], $row['email'], $row['password'], $row['role']);
+            $users[] = new User($row['id'], $row['name'], $row['email'], $row['password'], $row['role']);
         }
         return $users;
     }

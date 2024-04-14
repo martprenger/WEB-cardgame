@@ -18,7 +18,7 @@ require_once 'view/layouts/header.php';
         </div>
         <div class="input-group">
             <label for="password" class="label">email</label>
-            <input type="text" id="password" class="input-field" name="email" placeholder="Password">
+            <input type="text" id="password" class="input-field" name="email" placeholder="email">
         </div>
         <div class="input-group">
             <label for="password" class="label">Password</label>

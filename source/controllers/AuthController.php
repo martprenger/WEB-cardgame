@@ -58,7 +58,7 @@ class AuthController
         // Create a new instance of the User model and set its properties
         $hashedPassword = password_hash($postData['password'], PASSWORD_DEFAULT);
 
-        $user = new User($postData['username'], $postData['email'], $hashedPassword, 'user');
+        $user = new User(0, $postData['username'], $postData['email'], $hashedPassword, 'user');
         if ($postData['password'] !== $postData['password-redo']) {
             // Passwords don't match, handle the error (e.g., redirect back with error message)
             echo 'Passwords do not match';

@@ -47,7 +47,7 @@ require_once 'view/layouts/nav.php';
     <?php
     // Assuming you have access to the user's role through the Authorization service
     // Assuming $auth->getUserRole() returns the user's role
-    $userRole = $auth->getUserRole();
+    $userRole = $request->getUser()->getRole();
 
     // Check if the user's role is 'admin' or 'premium'
     if ($userRole === 'admin' || $userRole === 'premium') {

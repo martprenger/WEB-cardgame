@@ -67,6 +67,10 @@ class Request
         return $this->user;
     }
 
+    public function getGet(String $name) {
+        return isset($this->superglobals['GET'][$name]) ? $this->superglobals['GET'][$name] : null;
+    }
+
 
 
 

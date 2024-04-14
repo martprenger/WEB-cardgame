@@ -61,6 +61,7 @@ class Router
         }
 
         // Handle route not found
-        return "view/404.php";
+        header("Location: 404");
+        exit();
     }
 }

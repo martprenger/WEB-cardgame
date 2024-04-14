@@ -24,7 +24,7 @@ class TablesRepo
     private function createUsersTable()
     {
         $sql = "CREATE TABLE IF NOT EXISTS user (
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            id INTEGER  PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL,
             password VARCHAR(255) NOT NULL,
@@ -40,7 +40,7 @@ class TablesRepo
     private function createDecksTable()
     {
         $sql = "CREATE TABLE IF NOT EXISTS decks (
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            id INTEGER  PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             user_id INT NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(id)
@@ -87,7 +87,7 @@ class TablesRepo
     private function createDeckCardsTable()
     {
         $sql = "CREATE TABLE IF NOT EXISTS deck_cards (
-            id INT AUTO_INCREMENT PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             deck_id INT NOT NULL,
             card_id INT NOT NULL,
             FOREIGN KEY (deck_id) REFERENCES decks(id),
@@ -96,4 +96,25 @@ class TablesRepo
 
         $this->db->exec($sql);
     }
+
+    public function presetData()
+    {
+        $hashedPassword = password_hash('password', PASSWORD_DEFAULT);
+
+        // Prepare the SQL statement
+        $stmt = $this->db->prepare("INSERT INTO user (name, email, password, role) VALUES ('mart', 'mart@example.net', :password, 'admin')");
+        $stmt->bindValue(':password', $hashedPassword, SQLITE3_TEXT);
+        $result = $stmt->execute();
+
+        $stmt = $this->db->prepare("INSERT INTO user (name, email, password, role) VALUES ('shane', 'mart@example.net', :password, 'premium')");
+        $stmt->bindValue(':password', $hashedPassword, SQLITE3_TEXT);
+        $result = $stmt->execute();
+
+        $stmt = $this->db->prepare("INSERT INTO user (name, email, password, role) VALUES ('jorn', 'mart@example.net', :password, 'user')");
+        $stmt->bindValue(':password', $hashedPassword, SQLITE3_TEXT);
+        $result = $stmt->execute();
+
+    }
+
+
 }

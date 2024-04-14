@@ -22,6 +22,11 @@ require_once 'view/layouts/header.php';
                 <li class="nav-item">
                     <a class="nav-link" href="decks">decks</a>
                 </li>
+                <?php if ($request->getUser()->getRole() == 'admin') : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin">admin</a>
+                </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
@@ -36,13 +41,7 @@ require_once 'view/layouts/header.php';
             <?php echo $request->getUser()->getName() ?>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="profile">Profile</a>
-        <a class="dropdown-item" href="settings">Settings</a>
-        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="logout">Logout</a>
-        </div>
-        <div class="profilepic d-flex justify-content-center">
-            <img src="https://via.placeholder.com/50" alt="profile picture" class="rounded-circle">
         </div>
     </div>
 </nav>

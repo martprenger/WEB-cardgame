@@ -5,6 +5,9 @@ namespace Source\models;
 #[Entity]
 #[Table(name: 'user')]
 class User{
+    #[Column(name: 'id')]
+    private int $id;
+
     #[Column(name: 'username')]
     private string $name;
 
@@ -17,7 +20,8 @@ class User{
     #[Role(name: 'role')]
     private string $role;
 
-    public function __construct(string $name, string $email, string $password, string $role) {
+    public function __construct($id, string $name, string $email, string $password, string $role) {
+        $this->id = (int) $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
@@ -25,6 +29,10 @@ class User{
     }
 
     // getter for name
+    public function getId(): int {
+        return $this->id;
+    }
+
     public function getName(): string {
         return $this->name;
     }

@@ -15,41 +15,83 @@ class CardsRepo
         $this->db = $db;
     }
 
+    private function fetchAttributesByCardId(int $cardId): array
+    {
+        $attributes = [];
+
+        $stmt = $this->db->prepare("SELECT * FROM Attributes WHERE card_id = :card_id");
+        $stmt->bindValue(':card_id', $cardId, SQLITE3_INTEGER);
+        $result = $stmt->execute();
+
+        while ($attributeRow = $result->fetchArray(SQLITE3_ASSOC)) {
+            $attributes[] = new Attribute(
+                $attributeRow['set_name'],
+                $attributeRow['type'],
+                (int)$attributeRow['armor'],
+                $attributeRow['color'],
+                (int)$attributeRow['power'],
+                (int)$attributeRow['reach'],
+                $attributeRow['artist'],
+                $attributeRow['rarity'],
+                $attributeRow['faction'],
+                $attributeRow['related'],
+                (int)$attributeRow['provision'],
+                $attributeRow['factionSecondary']
+            );
+        }
+
+        return $attributes;
+    }
+
     public function getCardsAndAttributes(): array
     {
         $cardsAndAttributes = [];
 
-        // Query to retrieve cards
         $results = $this->db->query('SELECT * FROM Cards');
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-            // Query to retrieve attributes for this card
-            $attributesResult = $this->db->query("SELECT * FROM Attributes WHERE card_id = '{$row['id']}'");
-            $attributes = [];
-            while ($attributeRow = $attributesResult->fetchArray(SQLITE3_ASSOC)) {
-                // Create attribute object and add to attributes array
-                $attributes[] = new Attribute(
-                    $attributeRow['set_name'],
-                    $attributeRow['type'],
-                    (int)$attributeRow['armor'],
-                    $attributeRow['color'],
-                    (int)$attributeRow['power'],
-                    (int)$attributeRow['reach'],
-                    $attributeRow['artist'],
-                    $attributeRow['rarity'],
-                    $attributeRow['faction'],
-                    $attributeRow['related'],
-                    (int)$attributeRow['provision'],
-                    $attributeRow['factionSecondary']
-                );
-            }
+            $cardId = (int)$row['id'];
+            $attributes = $this->fetchAttributesByCardId($cardId);
 
-            $card = new Card((int)$row['id'], $row['name'], $row['category'], $row['ability'], $row['flavor'], $row['art'], $attributes);
-
-            // Add card and its attributes to the result array
+            $card = new Card(
+                $cardId,
+                $row['name'],
+                $row['category'],
+                $row['ability'],
+                $row['flavor'],
+                $row['art'],
+                $attributes
+            );
 
             $cardsAndAttributes[] = $card;
         }
 
         return $cardsAndAttributes;
+    }
+
+    public function getCardById(int $cardId): ?Card
+    {
+        $stmt = $this->db->prepare('SELECT * FROM Cards WHERE id = :id');
+        $stmt->bindValue(':id', $cardId, SQLITE3_INTEGER);
+        $result = $stmt->execute();
+
+        $row = $result->fetchArray(SQLITE3_ASSOC);
+
+        if (!$row) {
+            return null;
+        }
+
+        $attributes = $this->fetchAttributesByCardId($cardId);
+
+        $card = new Card(
+            $cardId,
+            $row['name'],
+            $row['category'],
+            $row['ability'],
+            $row['flavor'],
+            $row['art'],
+            $attributes
+        );
+
+        return $card;
     }
 }
